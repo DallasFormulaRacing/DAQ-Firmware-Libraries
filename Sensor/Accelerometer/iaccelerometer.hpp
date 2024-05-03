@@ -11,7 +11,7 @@
 #ifndef IACCELEROMETER
 #define IACCELEROMETER
 
-#include "Src/Platform/I2C/Interfaces/ii2c.hpp"
+#include "../../Platform/I2C/Interfaces/ii2c.hpp"
 
 namespace sensor{
 

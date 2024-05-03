@@ -4,7 +4,7 @@
  *  Created on: Mar 4, 2024
  *      Author: Nico
  */
-#include <Src/Platform/I2C/STM/I2CStmF4.hpp>
+#include "I2CStmF4.hpp"
 
 namespace platform {
 

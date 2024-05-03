@@ -18,7 +18,6 @@
 
 // Standard Libraries
 #include <inttypes.h>
-#include <Src/Platform/I2C/STM/I2CStmF4.hpp>
 #include <vector>
 #include <array>
 #include <memory>
