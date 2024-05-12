@@ -24,7 +24,7 @@ add_executable(
   # PE3 ECU CAN Bus Byte Parsing Tests
   ../Sensor/ECU/PE3/frame_parsing.hpp
   ../Sensor/ECU/PE3/frame_parsing.cpp
-  ../Sensor/ECU/PE3/frame_parsing_tests.cpp
+  Src/Sensor/ECU/PE3/frame_parsing_tests.cpp
 
   # PE3 ECU Frame Accessibility Tests
   ../Sensor/ECU/PE3/Frames/frame_pe1.hpp
@@ -43,7 +43,7 @@ add_executable(
   ../Sensor/ECU/PE3/Frames/frame_pe14.hpp
   ../Sensor/ECU/PE3/Frames/frame_pe15.hpp
   ../Sensor/ECU/PE3/Frames/frame_pe16.hpp
-  ../Sensor/ECU/PE3/pe_frames_tests.cpp
+  Src/Sensor/ECU/PE3/pe_frames_tests.cpp
 
   # Circular Queue Tests
   Src/Application/circular_queue.hpp
