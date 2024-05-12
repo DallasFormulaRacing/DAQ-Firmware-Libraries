@@ -18,7 +18,7 @@
 #include <string>
 
 // DFR Custom Dependencies
-#include "../../../DAQ_System/Program/Src/Application/circular_queue.hpp"
+#include "../../Application/circular_queue.hpp"
 
 
 namespace application {

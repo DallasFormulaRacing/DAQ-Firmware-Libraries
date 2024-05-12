@@ -20,22 +20,22 @@
 #include <gmock/gmock.h>
 
 // DFR Custom Dependencies
-#include "../../../../../../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe1.hpp"
-#include "../../../../../../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe2.hpp"
-#include "../../../../../../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe3.hpp"
-#include "../../../../../../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe4.hpp"
-#include "../../../../../../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe5.hpp"
-#include "../../../../../../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe6.hpp"
-#include "../../../../../../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe7.hpp"
-#include "../../../../../../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe8.hpp"
-#include "../../../../../../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe9.hpp"
-#include "../../../../../../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe10.hpp"
-#include "../../../../../../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe11.hpp"
-#include "../../../../../../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe12.hpp"
-#include "../../../../../../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe13.hpp"
-#include "../../../../../../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe14.hpp"
-#include "../../../../../../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe15.hpp"
-#include "../../../../../../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe16.hpp"
+#include "../../../../../Sensor/ECU/PE3/Frames/frame_pe1.hpp"
+#include "../../../../../Src/Sensor/ECU/PE3/Frames/frame_pe2.hpp"
+#include "../../../../../Src/Sensor/ECU/PE3/Frames/frame_pe3.hpp"
+#include "../../../../../Src/Sensor/ECU/PE3/Frames/frame_pe4.hpp"
+#include "../../../../../Src/Sensor/ECU/PE3/Frames/frame_pe5.hpp"
+#include "../../../../../Src/Sensor/ECU/PE3/Frames/frame_pe6.hpp"
+#include "../../../../../Src/Sensor/ECU/PE3/Frames/frame_pe7.hpp"
+#include "../../../../../Src/Sensor/ECU/PE3/Frames/frame_pe8.hpp"
+#include "../../../../../Src/Sensor/ECU/PE3/Frames/frame_pe9.hpp"
+#include "../../../../../Src/Sensor/ECU/PE3/Frames/frame_pe10.hpp"
+#include "../../../../../Src/Sensor/ECU/PE3/Frames/frame_pe11.hpp"
+#include "../../../../../Src/Sensor/ECU/PE3/Frames/frame_pe12.hpp"
+#include "../../../../../Src/Sensor/ECU/PE3/Frames/frame_pe13.hpp"
+#include "../../../../../Src/Sensor/ECU/PE3/Frames/frame_pe14.hpp"
+#include "../../../../../Src/Sensor/ECU/PE3/Frames/frame_pe15.hpp"
+#include "../../../../../Src/Sensor/ECU/PE3/Frames/frame_pe16.hpp"
 
 namespace sensor {
 

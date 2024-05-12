@@ -20,7 +20,7 @@
 #include <gmock/gmock.h>
 
 // DFR Custom Dependencies
-#include "../../../../../../DAQ_System/Program/Src/Sensor/ECU/PE3/frame_parsing.hpp"
+#include "../../../../../Sensor/ECU/PE3/frame_parsing.hpp"
 
 namespace sensor {
 
