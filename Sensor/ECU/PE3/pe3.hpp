@@ -23,7 +23,7 @@
 
 // DFR Custom Dependencies
 #include "iecu.hpp"
-#include "../../../Platform/CAN/Interfaces/ican.hpp"
+#include "../../../Platform/Interfaces/ican.hpp"
 
 // Internal ECU Messages
 #include "Frames/frame_pe1.hpp"

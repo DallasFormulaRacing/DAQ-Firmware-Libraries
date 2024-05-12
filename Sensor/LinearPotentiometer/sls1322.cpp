@@ -2,9 +2,11 @@
 * Linear Potentiometer SLS1300
 * Author:   Manuel DJC
 *           Cristian Cruz
+*           William Lim
 *
 * Email:    Manuel.DeJesusContreras@UTDallas.edu
 *           cris14.alex@gmail.com
+*           wll180000@utdallas.edu
 *
 * (c) 2022 Dallas Formula Racing - Embedded Firmware Team
 * Formula SAE International Collegiate Chapter
@@ -22,7 +24,7 @@ SLS1322::~SLS1322() { }
 
 void SLS1322::DisplacementInches(float quantized_counts[]) {
 	DisplacementRatio();
-	for(int channel = 0; channel < ADCBufSize; channel++){
+	for(uint32_t channel = 0; channel < ADCBufSize; channel++){
 		quantized_counts[channel] = retraction_ratio[channel] * kMaxLengthInches;
 
 	}
@@ -30,13 +32,13 @@ void SLS1322::DisplacementInches(float quantized_counts[]) {
 
 void SLS1322::DisplacementMillimeters(float quantized_counts[]) {
 	DisplacementRatio();
-	for(int channel = 0; channel <ADCBufSize; channel++){
+	for(uint32_t channel = 0; channel <ADCBufSize; channel++){
 		quantized_counts[channel] = retraction_ratio[channel] * kMaxLengthMillimeters;
 	}
 }
 
 void SLS1322::DisplacementRatio() {
-	for(int channel = 0;channel < ADCBufSize; channel++){
+	for(uint32_t channel = 0; channel < ADCBufSize; channel++){
 		retraction_ratio[channel] = 1 - ((float)ADCBuf[channel] / (kMaxResolution));
 
 	}

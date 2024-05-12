@@ -1,10 +1,13 @@
 /*
- * i2cHalWrapper_stmf4.cpp
- *
- *  Created on: Mar 4, 2024
- *      Author: Nico
- */
-#include "I2CStmF4.hpp"
+* STM32 F4 I2C Peripheral
+* Author:   Nico
+*
+* (c) 2024 Dallas Formula Racing - Embedded Firmware Team
+* Formula SAE International Collegiate Chapter
+* GPL-3.0 License
+*/
+
+#include <DFR_Libraries/Platform/STM/F4/I2C/i2c_stmf4.hpp>
 
 namespace platform {
 
