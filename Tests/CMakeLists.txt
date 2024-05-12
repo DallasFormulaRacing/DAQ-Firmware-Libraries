@@ -46,8 +46,8 @@ add_executable(
   ../Sensor/ECU/PE3/pe_frames_tests.cpp
 
   # Circular Queue Tests
-  ../Application/circular_queue.hpp
-  ../Application/circular_queue_tests.cpp
+  Src/Application/circular_queue.hpp
+  Src/Application/circular_queue_tests.cpp
 )
 
 # Linking with `gtest_main` instead of `gtest` allows us to bypass having
