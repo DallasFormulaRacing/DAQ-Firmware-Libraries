@@ -22,32 +22,32 @@ add_executable(
   Src/hello_test.cc
 
   # PE3 ECU CAN Bus Byte Parsing Tests
-  ../DAQ_System/Program/Src/Sensor/ECU/PE3/frame_parsing.hpp
-  ../DAQ_System/Program/Src/Sensor/ECU/PE3/frame_parsing.cpp
-  Src/Sensor/ECU/PE3/frame_parsing_tests.cpp
+  Sensor/ECU/PE3/frame_parsing.hpp
+  Sensor/ECU/PE3/frame_parsing.cpp
+  Sensor/ECU/PE3/frame_parsing_tests.cpp
 
   # PE3 ECU Frame Accessibility Tests
-  ../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe1.hpp
-  ../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe2.hpp
-  ../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe3.hpp
-  ../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe4.hpp
-  ../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe5.hpp
-  ../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe6.hpp
-  ../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe7.hpp
-  ../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe8.hpp
-  ../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe9.hpp
-  ../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe10.hpp
-  ../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe11.hpp
-  ../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe12.hpp
-  ../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe13.hpp
-  ../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe14.hpp
-  ../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe15.hpp
-  ../DAQ_System/Program/Src/Sensor/ECU/PE3/Frames/frame_pe16.hpp
-  Src/Sensor/ECU/PE3/pe_frames_tests.cpp
+  Sensor/ECU/PE3/Frames/frame_pe1.hpp
+  Sensor/ECU/PE3/Frames/frame_pe2.hpp
+  Sensor/ECU/PE3/Frames/frame_pe3.hpp
+  Sensor/ECU/PE3/Frames/frame_pe4.hpp
+  Sensor/ECU/PE3/Frames/frame_pe5.hpp
+  Sensor/ECU/PE3/Frames/frame_pe6.hpp
+  Sensor/ECU/PE3/Frames/frame_pe7.hpp
+  Sensor/ECU/PE3/Frames/frame_pe8.hpp
+  Sensor/ECU/PE3/Frames/frame_pe9.hpp
+  Sensor/ECU/PE3/Frames/frame_pe10.hpp
+  Sensor/ECU/PE3/Frames/frame_pe11.hpp
+  Sensor/ECU/PE3/Frames/frame_pe12.hpp
+  Sensor/ECU/PE3/Frames/frame_pe13.hpp
+  Sensor/ECU/PE3/Frames/frame_pe14.hpp
+  Sensor/ECU/PE3/Frames/frame_pe15.hpp
+  Sensor/ECU/PE3/Frames/frame_pe16.hpp
+  Sensor/ECU/PE3/pe_frames_tests.cpp
 
   # Circular Queue Tests
-  ../DAQ_System/Program/Src/Application/circular_queue.hpp
-  Src/Application/circular_queue_tests.cpp
+  Application/circular_queue.hpp
+  Application/circular_queue_tests.cpp
 )
 
 # Linking with `gtest_main` instead of `gtest` allows us to bypass having
