@@ -21,7 +21,7 @@
 #include "../circular_queue.hpp"
 #include "../data_payload.hpp"
 #include "../FileSystem/ifile_system.hpp"
-#include "../../Platform/GPIO/igpio.hpp"
+#include "../../Platform/Interfaces/igpio.hpp"
 
 namespace application {
 

@@ -16,7 +16,7 @@
 #include "gpio.h"
 
 // DFR Custom Dependencies
-#include "igpio.hpp"
+#include "../../../Interfaces/igpio.hpp"
 
 
 namespace platform {

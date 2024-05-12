@@ -3,10 +3,12 @@
 * Authors:       Nathaniel Ho
 *                Cristian Cruz
 *                Chad Melhem
+*                William Lim
 *
 * Email:         nathanielho712@gmail.com
 *                cris14.alex@gmail.com
 *                chad.melhem@utdallas.edu
+*                wll180000@utdallas.edu
 *
 * (c) 2023 Dallas Formula Racing - Embedded Firmware Team
 * Formula SAE International Collegiate Chapter
@@ -44,7 +46,7 @@ namespace sensor{
 class LSM303DLHC: public IAccelerometer {
     public:
 		/// @param hi2c an I2C peripheral from ST's HAL
-        LSM303DLHC(std::shared_ptr<platform::II2C> I2C_line);
+        LSM303DLHC(std::shared_ptr<platform::II2C> i2c);
 
         virtual ~LSM303DLHC() = default;
 
@@ -60,36 +62,6 @@ class LSM303DLHC: public IAccelerometer {
         void ComputeAcceleration() override;
 
 
-//========================================Todo & Unused=======================================
-        /** sets the x, y, and z offset corrections for hard iron calibration
-         *
-         * Calibration details here:
-         *  http://mbed.org/users/shimniok/notebook/quick-and-dirty-3d-compass-calibration/
-         *
-         * If you gather raw magnetometer data and find, for example, x is offset
-         * by hard iron by -20 then pass +20 to this member function to correct
-         * for hard iron.
-         *
-         * @param x is the offset correction for the x axis
-         * @param y is the offset correction for the y axis
-         * @param z is the offset correction for the z axis
-         */
-
-        void SetOffset(float x, float y, float z);
-
-        /** sets the scale factor for the x, y, and z axes
-         *
-         * Calibration details here:
-         *  http://mbed.org/users/shimniok/notebook/quick-and-dirty-3d-compass-calibration/
-         *
-         * Sensitivity of the three axes is never perfectly identical and this
-         * function can help to correct differences in sensitivity.  You're
-         * supplying a multiplier such that x, y and z will be normalized to the
-         * same max/min values
-         */
-        void SetScale(float x, float y, float z);
-//==============================================================================================
-
     private:
         // averages the idle value of the accelerometer to calibrate
         void calibrate() override;
@@ -100,7 +72,7 @@ class LSM303DLHC: public IAccelerometer {
         void ReadRawAcceleration();
 
 
-        std::shared_ptr<platform::II2C> I2C_line_;
+        std::shared_ptr<platform::II2C> i2c_;
 
 
         // value to hold offset values, scale, and gravity
