@@ -66,6 +66,10 @@ public:
         return full_;
     }
 
+    uint8_t GetSize(){
+    	return kMaxSize;
+    }
+
     void Clear() {
     	while (!IsEmpty()) {
     		Dequeue();
