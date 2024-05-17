@@ -16,11 +16,13 @@ namespace application {
 DataLogger::DataLogger(std::shared_ptr<IFileSystem> file_system,
 					   std::shared_ptr<platform::IGpio> user_input,
 					   CircularQueue<DataPayload>& queue,
+					   Can_Relay relay,
 					   uint8_t& storage_connected_observer,
 					   bool& logging_enabled_sharer)
   : file_system_(file_system),
 	user_input_(user_input),
 	queue_(queue),
+	can_relay_(relay),
 	storage_connected_observer_(storage_connected_observer),
 	logging_enabled_(logging_enabled_sharer) { }
 
@@ -151,6 +153,8 @@ void DataLogger::Logging::Compute(DataLogger& context) {
 	if(!context.queue_.IsEmpty()) {
 		received_data = context.queue_.Dequeue();
 		context.RecordDataSample(received_data);
+		context.can_relay_.generate_message(received_data);
+		context.can_relay_.send_message();
 	}
 
 	context.queue_.Unlock();

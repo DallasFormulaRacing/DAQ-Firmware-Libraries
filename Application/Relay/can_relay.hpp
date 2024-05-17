@@ -15,28 +15,15 @@
 
 
 namespace application{
-	class can_relay{
+	class Can_Relay{
 	public:
 		//move to cpp
-		can_relay(std::shared_ptr<platform::ICan> can_bus, CircularQueue<DataPayload>& queue):
-			can_bus_(can_bus), queue_(queue){
-			nRows = (queue_.GetSize()%8 == 0) ? queue_.GetSize()/8 : queue_.GetSize()/8 + 1;
-
-			message = new uint8_t*[nRows];
-			for(int i = 0; i < nRows; i++){
-				message[i] = new uint8_t[8];
-			}
-		};
+		Can_Relay(std::shared_ptr<platform::ICan> can_bus, CircularQueue<DataPayload>& queue);
 		//shared pointer to the can bus to relay and reference to the data queue to get the message
 		//allocate memory
-		~can_relay(){
-			for(int i = 0; i < nRows; i++){
-				delete[] message[i];
-			}
+		~Can_Relay();
 
-			delete[] message;
-		}
-		void generate_message(DataPayload& data, uint8_t* row);
+		void generate_message(DataPayload& data);
 
 		void send_message();
 
@@ -45,6 +32,7 @@ namespace application{
 		CircularQueue<DataPayload>& queue_;
 
 		uint8_t nRows;
+		uint8_t rowSize;
 		uint8_t** message;
 	};
 
