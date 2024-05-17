@@ -22,9 +22,9 @@ namespace application{
 			can_bus_(can_bus), queue_(queue){
 			nRows = (queue_.GetSize()%8 == 0) ? queue_.GetSize()/8 : queue_.GetSize()/8 + 1;
 
-			message = new char*[nRows];
+			message = new uint8_t*[nRows];
 			for(int i = 0; i < nRows; i++){
-				message[i] = new char[8];
+				message[i] = new uint8_t[8];
 			}
 		};
 		//shared pointer to the can bus to relay and reference to the data queue to get the message
@@ -36,15 +36,16 @@ namespace application{
 
 			delete[] message;
 		}
-		void generate_message(DataPayload& data, char* row);
+		void generate_message(DataPayload& data, uint8_t* row);
 
 		void send_message();
+
 	private:
 		std::shared_ptr<platform::ICan> can_bus_;
 		CircularQueue<DataPayload>& queue_;
 
 		uint8_t nRows;
-		char** message;
+		uint8_t** message;
 	};
 
 }

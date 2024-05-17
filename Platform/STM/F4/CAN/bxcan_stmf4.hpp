@@ -102,8 +102,11 @@ private:
 	// ST's HAL library.
 	CAN_HandleTypeDef& bx_can_; 			// BxCAN (Basic Extended) peripheral
 	CAN_RxHeaderTypeDef rx_message_header_; // Receiving message info
+	CAN_TxHeaderTypeDef tx_message_header_; // Sending message info
 	CAN_FilterTypeDef filter_;				// Filter bank configuration
 	uint8_t filter_bank_num_;
+
+	uint32_t tx_mailbox_;
 
 	// Configurable options
 	uint32_t rx_interrupt_mode_ = 0;

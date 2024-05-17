@@ -11,8 +11,8 @@
 
 namespace application{
 
-	void can_relay::generate_message(DataPayload& data, char* row){
-		char message_chunk[8];
+	void can_relay::generate_message(DataPayload& data, uint8_t* row){
+		uint8_t message_chunk[8];
 
 		for(int i = 0; i < nRows; i++){
 			for(int j = 0; j < 8; j++){
@@ -24,7 +24,9 @@ namespace application{
 	}
 
 	void can_relay::send_message(){
-
+		for(int i = 0; i < nRows; i++){
+			can_bus_->Transmit(message[i]);
+		}
 	}
 
 
