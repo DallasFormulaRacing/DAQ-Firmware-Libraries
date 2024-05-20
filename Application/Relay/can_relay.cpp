@@ -32,7 +32,7 @@ namespace application{
 				delete[] message;
 			}
 
-	void Can_Relay::generate_message(application::DataPayload& data){
+	void Can_Relay::Generate_Messages(application::DataPayload& data){
 		float row[rowSize];
 		data.RawRow(row);
 		uint8_t message_chunk[8];
@@ -46,9 +46,11 @@ namespace application{
 
 	}
 
-	void Can_Relay::send_message(){
-		for(int i = 0; i < nRows; i++){
-			can_bus_->Transmit(message[i]);
+	void Can_Relay::Send_Messages(){
+		if(!queue_.IsEmpty()){
+			for(int i = 0; i < nRows; i++){
+				can_bus_->Transmit(message[i]);
+			}
 		}
 	}
 

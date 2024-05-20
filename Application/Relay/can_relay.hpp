@@ -23,9 +23,9 @@ namespace application{
 		//allocate memory
 		~Can_Relay();
 
-		void generate_message(DataPayload& data);
+		void Generate_Messages(DataPayload& data);
 
-		void send_message();
+		void Send_Messages();
 
 	private:
 		std::shared_ptr<platform::ICan> can_bus_;
