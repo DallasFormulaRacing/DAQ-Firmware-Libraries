@@ -52,7 +52,6 @@ public:
 	DataLogger(std::shared_ptr<IFileSystem> file_system,
 			   std::shared_ptr<platform::IGpio> user_input,
 			   CircularQueue<DataPayload>& queue,
-			   Can_Relay relay,
 			   uint8_t& storage_connected_observer,
 			   bool& logging_enabled_sharer);
 
@@ -111,7 +110,6 @@ private:
 	std::shared_ptr<IFileSystem> file_system_;
 	std::shared_ptr<platform::IGpio> user_input_;
 	CircularQueue<DataPayload>& queue_;
-	Can_Relay can_relay_;
 	uint8_t& storage_connected_observer_;
 	bool& logging_enabled_;
 
