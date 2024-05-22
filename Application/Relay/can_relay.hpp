@@ -32,7 +32,7 @@ namespace application{
 		CircularQueue<DataPayload>& queue_;
 
 		uint8_t nRows;
-		uint8_t rowSize;
+		uint8_t messageSize;
 		uint8_t** message;
 	};
 
