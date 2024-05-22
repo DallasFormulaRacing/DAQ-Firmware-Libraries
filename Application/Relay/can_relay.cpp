@@ -12,7 +12,7 @@
 
 namespace application{
 
-	Can_Relay::Can_Relay(std::shared_ptr<platform::ICan> can_bus, CircularQueue<DataPayload>& queue):
+	Can_Relay::Can_Relay(std::shared_ptr<platform::ICan> can_bus, CircularQueue<DataPayload> queue):
 		can_bus_(can_bus), queue_(queue){
 		messageSize = queue_.GetSize();
 		nRows = (messageSize%2 == 0) ? messageSize/2 : messageSize/2 + 1; //This sizing is done with the assumption that all values are floating point
@@ -31,7 +31,7 @@ namespace application{
 		delete[] message;
 	}
 
-	void Can_Relay::Generate_Messages(application::DataPayload& data){
+	void Can_Relay::Generate_Messages(application::DataPayload data){
 		float row[messageSize];
 		data.RawRow(row);
 

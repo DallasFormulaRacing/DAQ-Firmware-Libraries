@@ -18,12 +18,12 @@ namespace application{
 	class Can_Relay{
 	public:
 		//move to cpp
-		Can_Relay(std::shared_ptr<platform::ICan> can_bus, CircularQueue<DataPayload>& queue);
+		Can_Relay(std::shared_ptr<platform::ICan> can_bus, CircularQueue<DataPayload> queue);
 		//shared pointer to the can bus to relay and reference to the data queue to get the message
 		//allocate memory
 		~Can_Relay();
 
-		void Generate_Messages(DataPayload& data);
+		void Generate_Messages(DataPayload data);
 
 		void Send_Messages();
 
