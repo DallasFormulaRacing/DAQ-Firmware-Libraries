@@ -4,12 +4,9 @@
  *  Created on: May 16, 2024
  *      Author: Nico
  */
-
-
+#include <algorithm>
 #include <cstring>
-
-#include "can_relay.hpp"
-
+#include "./can_relay.hpp"
 namespace application{
 
 	Can_Relay::Can_Relay(std::shared_ptr<platform::ICan> can_bus, CircularQueue<DataPayload> queue):
@@ -17,12 +14,11 @@ namespace application{
 		messageSize = queue_.GetSize();
 		nRows = (messageSize%2 == 0) ? messageSize/2 : messageSize/2 + 1; //This sizing is done with the assumption that all values are floating point
 																						 //Each CAN Pay load is 8 bytes = 2 floats
-
 		message = new uint8_t*[nRows];
 		for(int i = 0; i < nRows; i++){
 			message[i] = new uint8_t[8];
 		}
-	};
+	}
 
 	Can_Relay::~Can_Relay(){
 		for(int i = 0; i < nRows; i++){
@@ -31,17 +27,26 @@ namespace application{
 		delete[] message;
 	}
 
+	uint8_t* Can_Relay::bitSet(float value) {
+	    uint8_t* byteArray = (uint8_t*)&value;
+
+	    std::reverse(byteArray, byteArray + 4);
+
+		return byteArray;
+	}
+
 	void Can_Relay::Generate_Messages(application::DataPayload data){
 		float row[messageSize];
+		uint8_t r;
+		uint8_t c;
 		data.RawRow(row);
-
-		for(int i = 0; i < nRows; i++){
-			for(int j = 0; j < 2; j++){
-				std::memcpy(&message[i][sizeof(float) * j], &row[j + 2 * i], sizeof(float));
-			}
+		for(int i = 0; i < messageSize; i++){
+			r = i/2; //integer division by default floors
+			c = i%2; //the column which the row goes into is essentially sinusoidal
+			std::memcpy(&message[r][c], bitSet(row[i]), 4);
 		}
-
 	}
+
 
 	void Can_Relay::Send_Messages(){
 		if(!queue_.IsEmpty()){
@@ -50,6 +55,4 @@ namespace application{
 			}
 		}
 	}
-
-
 }
