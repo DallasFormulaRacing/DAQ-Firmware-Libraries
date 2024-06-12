@@ -18,15 +18,25 @@ namespace application{
 		Can_Relay(std::shared_ptr<platform::ICan> can_bus, CircularQueue<DataPayload> queue);
 		//shared pointer to the can bus to relay and reference to the data queue to get the message
 		//allocate memory
+
 		~Can_Relay();
+
 		void Generate_Messages(DataPayload data);
+
 		void Send_Messages();
+
 		uint8_t* bitSet(float value);
+
 	private:
+
 		std::shared_ptr<platform::ICan> can_bus_;
+
 		CircularQueue<DataPayload>& queue_;
+
 		uint8_t nRows;
-		uint8_t messageSize;
+
+		uint8_t messageSize; // neither this nor the above is super necessary to allocate memory for but I'm a bad programmer
+
 		uint8_t** message;
 	};
 }

@@ -13,7 +13,7 @@ namespace application{
 		can_bus_(can_bus), queue_(queue){
 		messageSize = queue_.GetSize();
 		nRows = (messageSize%2 == 0) ? messageSize/2 : messageSize/2 + 1; //This sizing is done with the assumption that all values are floating point
-																						 //Each CAN Pay load is 8 bytes = 2 floats
+																		  //Each CAN Pay load is 8 bytes = 2 floats
 		message = new uint8_t*[nRows];
 		for(int i = 0; i < nRows; i++){
 			message[i] = new uint8_t[8];
@@ -41,7 +41,7 @@ namespace application{
 		uint8_t c;
 		data.RawRow(row);
 		for(int i = 0; i < messageSize; i++){
-			r = i/2; //integer division by default floors
+			r = i/2; //integer division by default truncates to 0
 			c = i%2; //the column which the row goes into is essentially sinusoidal
 			std::memcpy(&message[r][c], bitSet(row[i]), 4);
 		}
