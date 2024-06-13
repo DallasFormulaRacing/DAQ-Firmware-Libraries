@@ -27,12 +27,9 @@ namespace application{
 		delete[] message;
 	}
 
-	uint8_t* Can_Relay::bitSet(float value) {
-	    uint8_t* byteArray = (uint8_t*)&value;
-
+	void Can_Relay::bitSet(float value, uint8_t* byteArray) {
+	    std::memcpy(binaryArray, &value, sizeof(float));
 	    std::reverse(byteArray, byteArray + 4);
-
-		return byteArray;
 	}
 
 	void Can_Relay::Generate_Messages(application::DataPayload data){
@@ -42,8 +39,8 @@ namespace application{
 		data.RawRow(row);
 		for(int i = 0; i < messageSize; i++){
 			r = i/2; //integer division by default floors
-			c = i%2; //the column which the row goes into is essentially sinusoidal
-			std::memcpy(&message[r][c], bitSet(row[i]), 4);
+			c = (i%2) * 4; //the column which the row goes into is essentially sinusoidal
+			bitset(row[i], &message[r][c]);
 		}
 	}
 
