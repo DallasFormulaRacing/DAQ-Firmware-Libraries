@@ -25,8 +25,7 @@ namespace application{
 
 		void Send_Messages();
 
-		uint8_t* bitSet(float value);
-
+		void bitSet(float value, uint8_t*);
 	private:
 
 		std::shared_ptr<platform::ICan> can_bus_;
