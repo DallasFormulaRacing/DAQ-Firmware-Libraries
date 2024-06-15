@@ -10,7 +10,7 @@
 * Formula SAE International Collegiate Chapter
 * GPL-3.0 License
 */
-
+#include <cstdio>
 #include "bxcan_stmf4.hpp"
 
 namespace platform {
@@ -57,8 +57,35 @@ void BxCanStmF4::Receive(uint8_t rx_buffer[kMaxBytes]) {
 }
 
 void BxCanStmF4::Transmit(uint8_t tx_buffer[kMaxBytes]) {
-	HAL_CAN_AddTxMessage(&bx_can_, &tx_message_header_, tx_buffer, &tx_mailbox_);
+	tx_message_header_.StdId = 126;
+	tx_message_header_.IDE = CAN_ID_STD;
+	tx_message_header_.RTR = CAN_RTR_DATA;
+	tx_message_header_.DLC = 8;
+	tx_message_header_.TransmitGlobalTime = DISABLE;
+
+	HAL_StatusTypeDef status = HAL_CAN_AddTxMessage(&bx_can_, &tx_message_header_, tx_buffer, &tx_mailbox_);
+
+	if (status != HAL_OK) {
+	        // Print the reason for the failure
+			printf("%lu", HAL_CAN_GetError(&bx_can_));
+
+	        switch (status) {
+	            case HAL_ERROR:
+	                printf("HAL_CAN_AddTxMessage failed: HAL_ERROR\n");
+	                break;
+	            case HAL_BUSY:
+	                printf("HAL_CAN_AddTxMessage failed: HAL_BUSY\n");
+	                break;
+	            case HAL_TIMEOUT:
+	                printf("HAL_CAN_AddTxMessage failed: HAL_TIMEOUT\n");
+	                break;
+	            default:
+	                printf("HAL_CAN_AddTxMessage failed: Unknown error\n");
+	                break;
+		}
+	}
 }
+
 
 void BxCanStmF4::ClearMessageArrivedFlag() { message_arrived_ = false; }
 
