@@ -37,8 +37,6 @@ namespace application{
 		uint8_t messageSize; // neither this nor the above is super necessary to allocate memory for but I'm a bad programmer
 
 		uint8_t** message;
-
-		uint8_t test_data[8] = {1 , 2 , 3 , 4 ,5 ,6 , 7 , 8};
 	};
 }
 #endif /* DFR_LIBRARIES_APPLICATION_RELAY_CAN_RELAY_HPP_ */
