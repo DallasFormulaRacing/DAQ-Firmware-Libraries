@@ -38,7 +38,7 @@ namespace application{
 
 		uint8_t** message;
 
-		uint8_t test_data[8] = "Hello!";
+		uint8_t test_data[8] = {1 , 2 , 3 , 4 ,5 ,6 , 7 , 8};
 	};
 }
 #endif /* DFR_LIBRARIES_APPLICATION_RELAY_CAN_RELAY_HPP_ */

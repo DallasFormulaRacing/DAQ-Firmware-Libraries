@@ -18,6 +18,7 @@ namespace application{
 		for(int i = 0; i < nRows; i++){
 			message[i] = new uint8_t[8];
 		}
+
 	}
 
 	Can_Relay::~Can_Relay(){
@@ -52,7 +53,6 @@ namespace application{
 				can_bus_->Transmit(message[i]);
 			}
 		}*/
-
 		can_bus_->Transmit(test_data);
 	}
 }

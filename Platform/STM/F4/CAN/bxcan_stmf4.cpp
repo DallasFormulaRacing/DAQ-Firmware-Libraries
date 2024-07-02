@@ -51,23 +51,32 @@ void BxCanStmF4::DisableInterruptMode() {
 }
 
 void BxCanStmF4::Receive(uint8_t rx_buffer[kMaxBytes]) {
-	for (int i = 0; i < kMaxBytes; i++) {
+	for (int i = 0; i < kMaxBytes; i++) { //memcpy to make efficient?
 		rx_buffer[i] = rx_buffer_[i];
 	}
 }
 
 void BxCanStmF4::Transmit(uint8_t tx_buffer[kMaxBytes]) {
-	tx_message_header_.StdId = 126;
-	tx_message_header_.IDE = CAN_ID_STD;
-	tx_message_header_.RTR = CAN_RTR_DATA;
-	tx_message_header_.DLC = 8;
-	tx_message_header_.TransmitGlobalTime = DISABLE;
 
+	tx_message_header_.IDE = CAN_ID_STD; // setting ID to Standard ID
+	tx_message_header_.StdId = 0x446; // Identifier
+	tx_message_header_.RTR = CAN_RTR_DATA;// Setting Remote Transmission Request
+	tx_message_header_.DLC = 8;//Data Length of Data bytes
+	//move the above to config function
+
+	if(HAL_CAN_AddTxMessage(&bx_can_, &tx_message_header_, tx_buffer,&tx_mailbox_) != HAL_OK){
+					  Error_Handler();
+	}
+
+	//below is good code for debugging and gives the end user more of an idea what is happening,
+	//the above works :)
+
+	/*
 	HAL_StatusTypeDef status = HAL_CAN_AddTxMessage(&bx_can_, &tx_message_header_, tx_buffer, &tx_mailbox_);
 
 	if (status != HAL_OK) {
 	        // Print the reason for the failure
-			printf("%lu", HAL_CAN_GetError(&bx_can_));
+			printf("%lu \n %lu \n", HAL_CAN_GetError(&bx_can_), tx_mailbox_);
 
 	        switch (status) {
 	            case HAL_ERROR:
@@ -83,7 +92,10 @@ void BxCanStmF4::Transmit(uint8_t tx_buffer[kMaxBytes]) {
 	                printf("HAL_CAN_AddTxMessage failed: Unknown error\n");
 	                break;
 		}
+	} else {
+		printf("Message Transmitted");
 	}
+	*/
 }
 
 
