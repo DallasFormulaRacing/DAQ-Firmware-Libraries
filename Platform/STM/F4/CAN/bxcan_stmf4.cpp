@@ -39,6 +39,11 @@ void BxCanStmF4::ConfigureFilter(uint32_t filder_id_high, uint32_t filter_id_low
 }
 
 void BxCanStmF4::Start() {
+	tx_message_header_.IDE = CAN_ID_STD; // setting ID to Standard ID
+	tx_message_header_.StdId = 0x417; // Identifier (D = 4/ A = 1/ Q = (1)7)
+	tx_message_header_.RTR = CAN_RTR_DATA;// Setting Remote Transmission Request
+	tx_message_header_.DLC = 8;//Data Length of Data bytes
+
 	HAL_CAN_Start(&bx_can_);
 }
 
@@ -51,51 +56,17 @@ void BxCanStmF4::DisableInterruptMode() {
 }
 
 void BxCanStmF4::Receive(uint8_t rx_buffer[kMaxBytes]) {
-	for (int i = 0; i < kMaxBytes; i++) { //memcpy to make efficient?
+	for (int i = 0; i < kMaxBytes; i++) {
 		rx_buffer[i] = rx_buffer_[i];
 	}
 }
 
 void BxCanStmF4::Transmit(uint8_t tx_buffer[kMaxBytes]) {
-
-	tx_message_header_.IDE = CAN_ID_STD; // setting ID to Standard ID
-	tx_message_header_.StdId = 0x446; // Identifier
-	tx_message_header_.RTR = CAN_RTR_DATA;// Setting Remote Transmission Request
-	tx_message_header_.DLC = 8;//Data Length of Data bytes
-	//move the above to config function
-
 	if(HAL_CAN_AddTxMessage(&bx_can_, &tx_message_header_, tx_buffer,&tx_mailbox_) != HAL_OK){
-					  Error_Handler();
+		Error_Handler();
 	}
 
-	//below is good code for debugging and gives the end user more of an idea what is happening,
-	//the above works :)
-
-	/*
-	HAL_StatusTypeDef status = HAL_CAN_AddTxMessage(&bx_can_, &tx_message_header_, tx_buffer, &tx_mailbox_);
-
-	if (status != HAL_OK) {
-	        // Print the reason for the failure
-			printf("%lu \n %lu \n", HAL_CAN_GetError(&bx_can_), tx_mailbox_);
-
-	        switch (status) {
-	            case HAL_ERROR:
-	                printf("HAL_CAN_AddTxMessage failed: HAL_ERROR\n");
-	                break;
-	            case HAL_BUSY:
-	                printf("HAL_CAN_AddTxMessage failed: HAL_BUSY\n");
-	                break;
-	            case HAL_TIMEOUT:
-	                printf("HAL_CAN_AddTxMessage failed: HAL_TIMEOUT\n");
-	                break;
-	            default:
-	                printf("HAL_CAN_AddTxMessage failed: Unknown error\n");
-	                break;
-		}
-	} else {
-		printf("Message Transmitted");
-	}
-	*/
+	while(HAL_CAN_IsTxMessagePending(&bx_can_, tx_mailbox_)){}
 }
 
 

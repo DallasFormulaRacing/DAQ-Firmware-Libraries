@@ -49,6 +49,7 @@ public:
 
 	/// Publishes data to the CAN bus.
 	/// @param tx_buffer The byte array whose data is to be sent.
+	/// This function will hang if the transmission never completes
 	virtual void Transmit(uint8_t tx_buffer[kMaxBytes]) override;
 
 	/// @return Indicates whether a new message has arrived.
@@ -57,8 +58,10 @@ public:
 	/// Clears the `MessageArrivedFlag()`.
 	virtual void ClearMessageArrivedFlag() override;
 
+
 	/// @return The CAN ID of the latest message received.
 	virtual uint32_t LatestCanId() override;
+
 
 	/// A user-configurable interrupt mode for generating notifications
 	/// when CAN messages are received. To be used with `ConfigureReceiveCallback()`.
