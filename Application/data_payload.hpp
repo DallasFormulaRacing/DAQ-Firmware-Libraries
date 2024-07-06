@@ -187,7 +187,10 @@ private:
 				air_temp_,
 				coolant_temp_
 		};
-		raw_buffer = raw_array;
+
+		for (size_t i = 0; i < 20; ++i) {
+		        raw_buffer[i] = raw_array[i];
+		}
 	}
 
 

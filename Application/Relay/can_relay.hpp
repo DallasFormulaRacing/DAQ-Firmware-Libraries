@@ -32,11 +32,11 @@ namespace application{
 
 		CircularQueue<DataPayload>& queue_;
 
-		uint8_t nRows;
+		uint8_t messageSize;
 
-		uint8_t messageSize; // neither this nor the above is super necessary to allocate memory for but I'm a bad programmer
+		uint8_t nRows = 10;
 
-		uint8_t** message;
+		uint8_t message[10][8];
 	};
 }
 #endif /* DFR_LIBRARIES_APPLICATION_RELAY_CAN_RELAY_HPP_ */

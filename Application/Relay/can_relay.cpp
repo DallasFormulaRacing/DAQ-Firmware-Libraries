@@ -12,20 +12,13 @@ namespace application{
 	Can_Relay::Can_Relay(std::shared_ptr<platform::ICan> can_bus, CircularQueue<DataPayload> queue):
 		can_bus_(can_bus), queue_(queue){
 		messageSize = queue_.GetSize();
-		nRows = (messageSize%2 == 0) ? messageSize/2 : messageSize/2 + 1; //This sizing is done with the assumption that all values are floating point
-																		  //Each CAN Pay load is 8 bytes = 2 floats
-		message = new uint8_t*[nRows];
-		for(int i = 0; i < nRows; i++){
-			message[i] = new uint8_t[8];
-		}
+		//nRows = (messageSize%2 == 0) ? messageSize/2 : messageSize/2 + 1; //This sizing is done with the assumption that all values are floating point
+																	  //Each CAN Pay load is 8 bytes = 2 floats
+		//above was commented for the expedience of compile time size
+
 
 	}
-
 	Can_Relay::~Can_Relay(){
-		for(int i = 0; i < nRows; i++){
-			delete[] message[i];
-		}
-		delete[] message;
 	}
 
 	void Can_Relay::bitSet(float value, uint8_t* byteArray) {
@@ -34,7 +27,7 @@ namespace application{
 	}
 
 	void Can_Relay::Generate_Messages(application::DataPayload data){
-		float row[messageSize];
+		float row[messageSize] = {0};
 		uint8_t r;
 		uint8_t c;
 		data.RawRow(row);
