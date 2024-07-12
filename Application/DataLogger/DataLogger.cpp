@@ -85,7 +85,7 @@ void DataLogger::Idle::Compute(DataLogger& context) {
 	if (context.storage_connected_observer_) {
 		context.SetState(&context.standby_state_);
 	}
-	context.SetState(&context.standby_state_); // here for testing
+	context.SetState(&context.standby_state_);
 }
 
 void DataLogger::Idle::Exit(DataLogger& context) {
@@ -114,7 +114,7 @@ void DataLogger::Standby::Compute(DataLogger& context) {
 		}
 	}
 
-	context.SetState(&context.logging_state_); // here for testing
+	context.SetState(&context.logging_state_);
 }
 
 void DataLogger::Standby::Exit(DataLogger& context) {
@@ -127,7 +127,7 @@ void DataLogger::Standby::Exit(DataLogger& context) {
 //*************************************************
 void DataLogger::Logging::Enter(DataLogger& context) {
 	printf("[DataLogger] Entering Logging state.\n");
-	//context.CreateCsvFile();
+	context.CreateCsvFile();
 
 	context.queue_.Lock();
 	context.queue_.Clear();
@@ -136,14 +136,14 @@ void DataLogger::Logging::Enter(DataLogger& context) {
 
 void DataLogger::Logging::Compute(DataLogger& context) {
 	if (!context.storage_connected_observer_) {
-		//context.SetState(&context.idle_state_); // commented for testing
+		context.SetState(&context.idle_state_);
 	}
 
 	if (context.user_input_->ToggleDetected()) {
 		context.logging_enabled_ = context.user_input_->Read();
 
 		if (!context.logging_enabled_) {
-			//context.SetState(&context.standby_state_);  // commented for testing
+			context.SetState(&context.standby_state_);
 		}
 	}
 
