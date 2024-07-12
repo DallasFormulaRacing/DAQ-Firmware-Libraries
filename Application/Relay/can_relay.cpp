@@ -12,8 +12,10 @@ namespace application{
 	Can_Relay::Can_Relay(std::shared_ptr<platform::ICan> can_bus, CircularQueue<DataPayload> queue):
 		can_bus_(can_bus), queue_(queue){
 		messageSize = queue_.GetSize();
-		//nRows = (messageSize%2 == 0) ? messageSize/2 : messageSize/2 + 1; //This sizing is done with the assumption that all values are floating point
-																	  //Each CAN Pay load is 8 bytes = 2 floats
+		//nRows = (messageSize%2 == 0) ? messageSize/2 : messageSize/2 + 1;
+		//This sizing is done with the assumption that all values are floating point
+		//Each CAN Pay load is 8 bytes = 2 floats
+		//Issue being that this is calculated at runtime
 		//above was commented for the expedience of compile time size
 
 
