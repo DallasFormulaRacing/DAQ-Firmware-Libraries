@@ -85,7 +85,6 @@ void DataLogger::Idle::Compute(DataLogger& context) {
 	if (context.storage_connected_observer_) {
 		context.SetState(&context.standby_state_);
 	}
-	context.SetState(&context.standby_state_);
 }
 
 void DataLogger::Idle::Exit(DataLogger& context) {
@@ -113,8 +112,6 @@ void DataLogger::Standby::Compute(DataLogger& context) {
 			context.SetState(&context.logging_state_);
 		}
 	}
-
-	context.SetState(&context.logging_state_);
 }
 
 void DataLogger::Standby::Exit(DataLogger& context) {

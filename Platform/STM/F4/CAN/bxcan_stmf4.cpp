@@ -63,6 +63,7 @@ void BxCanStmF4::Receive(uint8_t rx_buffer[kMaxBytes]) {
 
 void BxCanStmF4::Transmit(uint8_t tx_buffer[kMaxBytes]) {
 	if(HAL_CAN_AddTxMessage(&bx_can_, &tx_message_header_, tx_buffer,&tx_mailbox_) != HAL_OK){
+		printf("Error Transmit");
 		Error_Handler();
 	}
 
