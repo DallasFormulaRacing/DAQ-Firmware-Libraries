@@ -42,13 +42,10 @@ namespace application{
 
 
 	void Can_Relay::Send_Messages(){
-		/*if(!queue_.IsEmpty()){
-			for(int i = 0; i < nRows; i++){
-				can_bus_->Transmit(message[i]);
-			}
+		for(int i = 0; i < nRows; i++){
+			can_bus_->Transmit(message[i]);
 		}
-		*/
-		uint8_t test[] = {1,2,3,4,5,6,7,8};
-		can_bus_->Transmit(test);
+		//uint8_t test[] = {1,2,3,4,5,6,7,8};
+		//can_bus_->Transmit(test);
 	}
 }
