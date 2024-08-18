@@ -63,7 +63,7 @@ struct DataPayload {
 	}
 
     void RawRow(float* buffer){
-    	return RawArray(buffer);
+    	RawArray(buffer);
     }
 
     void Lock() { mutex_->Lock(); }

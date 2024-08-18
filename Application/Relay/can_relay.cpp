@@ -10,8 +10,9 @@ namespace application{
 	Can_Relay::Can_Relay(std::shared_ptr<platform::ICan> can_bus,
 						 CircularQueue<DataPayload> queue):
 		can_bus_(can_bus),
-		queue_(queue)
-		{ messageSize = queue_.GetSize(); }
+		queue_(queue){
+		messageSize = queue_.GetSize();
+	}
 
 	void Can_Relay::bitSet(float value, uint8_t* byteArray) {
 	    std::memcpy(byteArray, &value, sizeof(float));
@@ -20,27 +21,27 @@ namespace application{
 
 	void Can_Relay::Generate_Messages(application::DataPayload data){
 		transmission_ended_ = false;
-		float row[messageSize] = {0};
-		uint8_t r;
-		uint8_t c;
-		data.RawRow(row);
+		float message_row[messageSize] = {0};
+		uint8_t row;
+		uint8_t column;
+		data.RawRow(message_row);
 		for(int i = 0; i < messageSize; i++){
-			r = i/2; //integer division by default floors
-			c = (i%2) * 4; //the column which the row goes into is essentially sinusoidal
-			bitSet(row[i], &message[r][c]);
+			row = i/2; //integer division by default floors
+			column = (i%2) * 4; //the column which the row goes into is essentially sinusoidal
+			bitSet(message_row[i], &message[row][column]);
 		}
 	}
 
 
 	void Can_Relay::Send_Messages(){
-		for(int i = 0; i < nRows; i++){
+		for(int i = 0; i < kRows; i++){
 			can_bus_->Transmit(message[i]);
 		}
 	}
 
 	void Can_Relay::End_Transmission(bool logging_flag){
 		if(!logging_flag && !transmission_ended_){
-			can_bus_->Transmit(end_transmission_);
+			can_bus_->Transmit(kEnd_transmission_);
 			transmission_ended_ = true;
 		}
 	}

@@ -42,9 +42,9 @@ namespace application{
 
 		uint8_t messageSize;
 
-		uint8_t end_transmission_[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+		uint8_t kEnd_transmission_[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
 
-		static constexpr uint8_t nRows = 10;
+		static constexpr uint8_t kRows = 10;
 
 		bool transmission_ended_ = false;
 
