@@ -11,7 +11,7 @@ namespace application{
 						 CircularQueue<DataPayload> queue):
 		can_bus_(can_bus),
 		queue_(queue){
-		messageSize = queue_.GetSize();
+		messageSize = 29;
 	}
 
 	void Can_Relay::bitSet(float value, uint8_t* byteArray) {
