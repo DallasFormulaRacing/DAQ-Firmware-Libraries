@@ -1,5 +1,5 @@
 /*
- * STM32 F4 ANALOG TO DIGITAL CONVERTER ABSTRACT INTERFACE
+ * STM32 F4 ADC ABSTRACT INTERFACE
  * Author:   William Kim
  *
  * Email:    wkim@utdallas.edu
@@ -11,6 +11,8 @@
 
 #ifndef IADC_H
 #define IADC_H
+
+#include <cstdint>
 
 namespace platform
 {
