@@ -18,27 +18,22 @@
 
 
 namespace platform {
-    class AdcStmF4 : public iadc {
+    class AdcStmF4 : public IADC {
         public:
-        AdcStmF4(/* ?? */);
+        AdcStmF4(ADC_HandleTypeDef*, DMA_HandleTypeDef*, uint16_t);
 
         virtual ~AdcStmF4();
 
-        virtual void Initialize_ADC() override;
-        
-        virtual void start() override;
+        uint16_t convert();
 
-        virtual void stop() override;
-
-        virtual double read() override;
-
-        virtual double Get_ADC_Result() override;
+        void write();
 
         private:
-        ADC_HandleTypeDef* oo;
+        ADC_HandleTypeDef* hadc;
+        DMA_HandleTypeDef* hdma;
         uint16_t pin_;
 
-    }
+    };
 }
 
 
