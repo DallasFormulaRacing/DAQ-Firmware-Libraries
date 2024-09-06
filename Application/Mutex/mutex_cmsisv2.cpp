@@ -31,6 +31,4 @@ void MutexCmsisV2::Unlock() {
 	osMutexRelease(mutex_id_);
 }
 
-
-
 } // namespace application

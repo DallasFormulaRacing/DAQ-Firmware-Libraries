@@ -20,6 +20,7 @@ namespace application{
 	}
 
 	void Can_Relay::Generate_Messages(application::DataPayload data){
+
 		transmission_ended_ = false;
 		float message_row[messageSize] = {0};
 		uint8_t row;
@@ -30,12 +31,14 @@ namespace application{
 			column = (i%2) * 4; //the column which the row goes into is essentially sinusoidal
 			bitSet(message_row[i], &message[row][column]);
 		}
+
 	}
 
 
 	void Can_Relay::Send_Messages(){
 		for(int i = 0; i < kRows; i++){
 			can_bus_->Transmit(message[i]);
+			//printf("Sending Message! \n");
 		}
 	}
 

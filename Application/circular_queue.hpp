@@ -80,7 +80,6 @@ public:
 
     void Unlock() { mutex_->Unlock(); }
 
-
 private:
     void IncrementIndex(uint8_t &index) {
         index = (index + 1) % kMaxSize;   

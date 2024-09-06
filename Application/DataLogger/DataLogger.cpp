@@ -104,7 +104,6 @@ void DataLogger::Standby::Compute(DataLogger& context) {
 	if (!context.storage_connected_observer_) {
 		context.SetState(&context.idle_state_);
 	}
-
 	if (context.user_input_->ToggleDetected()) {
 		context.logging_enabled_ = context.user_input_->Read();
 
@@ -112,6 +111,7 @@ void DataLogger::Standby::Compute(DataLogger& context) {
 			context.SetState(&context.logging_state_);
 		}
 	}
+	context.SetState(&context.logging_state_);
 }
 
 void DataLogger::Standby::Exit(DataLogger& context) {
@@ -144,7 +144,6 @@ void DataLogger::Logging::Compute(DataLogger& context) {
 		}
 	}
 
-
 	context.queue_.Lock();
 
 	DataPayload received_data;
@@ -154,6 +153,7 @@ void DataLogger::Logging::Compute(DataLogger& context) {
  	}
 
 	context.queue_.Unlock();
+
 }
 
 void DataLogger::Logging::Exit(DataLogger& context) {
