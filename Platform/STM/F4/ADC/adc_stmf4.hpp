@@ -28,10 +28,12 @@ namespace platform {
 
         void write();
 
+        
+
         private:
         ADC_HandleTypeDef* hadc;
         DMA_HandleTypeDef* hdma;
-        uint16_t pin_;
+        //uint16_t pin_;
 
     };
 }
