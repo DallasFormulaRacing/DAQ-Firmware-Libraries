@@ -39,13 +39,24 @@ namespace platform {
         else {//use during debug
             
             printf("HAL ADC error code: "+HAL_ADC_GetError(hadc));
+            return 0x0000; //
         }
 
     }
 
-    void AdcStmF4::write() //redundant?
+    void AdcStmF4::writeToBuffer() //redundant?
     {
-        uint16_t value = convert();
+        uint16_t ADC_Conversion_Result = convert();
+
+        if( (adc_buf != nullptr) && (adc_buf->size() < buffer_size) )
+        {
+            adc_buf->push_back(convert());
+        }
+
+        else
+        {//use during debug
+            printf("ADC Buffer Error or Buffer Full\n");
+        }
     }
 }
 

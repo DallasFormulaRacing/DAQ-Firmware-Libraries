@@ -26,10 +26,7 @@ namespace platform
 
         //adc operations
         virtual uint16_t convert() const = 0;
-        virtual void write() = 0;
-
-        //buffer mngmt
-        //virtual void read() = 0;
+        virtual void writeToBuffer() = 0;
 
     private:
 

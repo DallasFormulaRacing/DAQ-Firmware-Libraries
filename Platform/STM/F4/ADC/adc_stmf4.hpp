@@ -26,7 +26,7 @@ namespace platform {
 
         uint16_t convert();
 
-        void write();
+        void writeToBuffer();
 
         private:
 
