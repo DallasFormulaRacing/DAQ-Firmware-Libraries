@@ -25,17 +25,17 @@ namespace platform
         virtual ~IADC() = 0;
 
         //adc operations
-        virtual uint16_t convert() = 0;
+        virtual uint16_t convert() const = 0;
         virtual void write() = 0;
 
         //buffer mngmt
-        virtual void read() = 0;
+        //virtual void read() = 0;
 
     private:
 
     protected:
     std::shared_ptr<std::vector<uint16_t>> adc_buf; //container for adc read
-    std::shared_ptr<size_t> buffer_size; //unsigned
+    size_t buffer_size; //unsigned
 
 
 

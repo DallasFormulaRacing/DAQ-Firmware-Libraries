@@ -14,8 +14,8 @@
 #include "adc_stmf4.hpp" //include header
 
 namespace platform {
-    AdcStmF4::AdcStmF4(ADC_HandleTypeDef* hadc, DMA_HandleTypeDef* hdma, uint16_t pin) 
-    {
+    AdcStmF4::AdcStmF4(ADC_HandleTypeDef* hadc, DMA_HandleTypeDef* hdma) 
+    : hdma(hdma), hadc(hadc){
         MX_ADC1_Init();
         HAL_ADC_Init(hadc);
         HAL_DMA_Init(hdma);
@@ -31,14 +31,21 @@ namespace platform {
     {
         HAL_ADC_Start(hadc);
 
-        uint16_t value = HAL_ADC_GetValue(hadc);
+        if(HAL_ADC_PollForConversion(hadc,HAL_MAX_DELAY) == HAL_OK)
+        {
+            return HAL_ADC_GetValue(hadc);
+        }
+
+        else {//use during debug
+            
+            printf("HAL ADC error code: "+HAL_ADC_GetError(hadc));
+        }
+
     }
 
-    
-
-    void AdcStmF4::write()
+    void AdcStmF4::write() //redundant?
     {
-
+        uint16_t value = convert();
     }
 }
 

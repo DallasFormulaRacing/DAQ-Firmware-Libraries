@@ -20,7 +20,7 @@
 namespace platform {
     class AdcStmF4 : public IADC {
         public:
-        AdcStmF4(ADC_HandleTypeDef*, DMA_HandleTypeDef*, uint16_t);
+        AdcStmF4(ADC_HandleTypeDef*, DMA_HandleTypeDef*);
 
         virtual ~AdcStmF4();
 
@@ -28,9 +28,8 @@ namespace platform {
 
         void write();
 
-        
-
         private:
+
         ADC_HandleTypeDef* hadc;
         DMA_HandleTypeDef* hdma;
         //uint16_t pin_;
