@@ -73,6 +73,8 @@ class LSM6DSOX_Accelerometer: public IAccelerometer {
         // Sets the FSR value
         void SetFSR(FSR FSRValue);
 
+
+        void CalibrateSensor() { calibrate(); } //used a get function to allow IMU access
     private:
 
         // averages the idle value of the accelerometer to calibrate

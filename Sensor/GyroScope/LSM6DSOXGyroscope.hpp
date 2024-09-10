@@ -70,6 +70,11 @@ class LSM6DSOX_Gyroscope: public IGyroscope{
         /// @param value from FSR enumeration
         void SetFSR(FSR SelectedFSRValue);
 
+    public:
+        bool GetAngularVelocity() { return AngularVelocity(); } //made get methods for private members for IMU class
+        float GetDegreesToRadians() const { return DegreesToRadians; }
+
+
     private:
         /// takes in raw data from the gyroscope
         /// @param g[3] array to hold data for each axis
