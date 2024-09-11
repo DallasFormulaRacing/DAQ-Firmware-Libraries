@@ -5,7 +5,7 @@ namespace sensor {
 
 LSM6DSOX_IMU::LSM6DSOX_IMU(I2C_HandleTypeDef &hi2c)
     : gyroscope_(hi2c), accelerometer_(hi2c) {
-}
+} //LSM6DSOX_IMU inherits from both Accelerometer and Gyroscope 
 
 void LSM6DSOX_IMU::Initialize() {
     gyroscope_.SetODR(LSM6DSOX_Gyroscope::ODR::ODR104);
