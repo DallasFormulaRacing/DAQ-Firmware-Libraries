@@ -12,10 +12,11 @@
 
 #include "../../../Interfaces/iadc.hpp" // dfr custom interface
 #include "adc_stmf4.hpp" //include header
+#include <stdio.h>
 
 namespace platform {
     AdcStmF4::AdcStmF4(ADC_HandleTypeDef* hadc, DMA_HandleTypeDef* hdma) 
-    : hdma(hdma), hadc(hadc){
+    : hadc(hadc), hdma(hdma){
         MX_ADC1_Init();
         HAL_ADC_Init(hadc);
         HAL_DMA_Init(hdma);
@@ -50,7 +51,7 @@ namespace platform {
 
         if( (adc_buf != nullptr) && (adc_buf->size() < buffer_size) )
         {
-            adc_buf->push_back(convert());
+            adc_buf->push_back(ADC_Conversion_Result);
         }
 
         else
