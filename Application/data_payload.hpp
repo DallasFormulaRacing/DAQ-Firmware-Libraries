@@ -188,7 +188,7 @@ private:
 				coolant_temp_
 		};
 
-		for (size_t i = 0; i < 20; ++i) {
+		for (size_t i = 0; i < 29; ++i) {
 		        raw_buffer[i] = raw_array[i];
 		}
 	}
