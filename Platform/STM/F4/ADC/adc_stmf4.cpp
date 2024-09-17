@@ -40,6 +40,7 @@ namespace platform {
         else {//use during debug
             
             printf("HAL ADC error code: "+HAL_ADC_GetError(hadc));
+            HAL_ADC_Stop(hadc);
             return 0x0000; //
         }
 
