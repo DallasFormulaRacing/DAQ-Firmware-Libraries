@@ -47,6 +47,10 @@ void BxCanStmF4::Start() {
 	HAL_CAN_Start(&bx_can_);
 }
 
+void BxCanStmF4::ChangeArbId(uint32_t newId){
+	tx_message_header_.StdId = newId;
+}
+
 void BxCanStmF4::EnableInterruptMode() {
 	HAL_CAN_ActivateNotification(&bx_can_, rx_interrupt_mode_);
 }

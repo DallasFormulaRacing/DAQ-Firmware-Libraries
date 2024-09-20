@@ -36,7 +36,9 @@ namespace application{
 
 
 	void Can_Relay::Send_Messages(){
+		can_bus_->ChangeArbId(0x417);
 		for(int i = 0; i < kRows; i++){
+			can_bus_->ChangeArbId(0x417 + i); //each message has a unique ID
 			can_bus_->Transmit(message[i]);
 			//printf("Sending Message! \n");
 		}

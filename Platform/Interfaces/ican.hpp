@@ -30,6 +30,8 @@ public:
 
 	virtual bool MessageArrivedFlag() = 0;
 
+	virtual void ChangeArbId(uint32_t newId) = 0;
+
 	virtual void ClearMessageArrivedFlag() = 0;
 
 	virtual uint32_t LatestCanId() = 0;

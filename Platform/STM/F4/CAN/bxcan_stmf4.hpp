@@ -58,6 +58,9 @@ public:
 	/// Clears the `MessageArrivedFlag()`.
 	virtual void ClearMessageArrivedFlag() override;
 
+	/// Changes the transmission IDs
+	virtual void ChangeArbId(uint32_t newId) override;
+
 
 	/// @return The CAN ID of the latest message received.
 	virtual uint32_t LatestCanId() override;
