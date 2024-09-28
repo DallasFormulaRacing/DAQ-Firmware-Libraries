@@ -40,6 +40,7 @@ float* LSM6DSOX_IMU::RadiansPerSecond() {
 void LSM6DSOX_IMU::updateSensorData() {
     accelerometer_.ComputeAcceleration();
     gyroscope_.GetAngularVelocity();  // Use the public wrapper method to access private method
+
     for (int i = 0; i < 3; ++i) {
         acceleration_[i] = accelerometer_.GetAcceleration()[i];
         angular_velocity_[i] = gyroscope_.DegreesPerSecond()[i] * gyroscope_.GetDegreesToRadians();  // Use the public wrapper method
