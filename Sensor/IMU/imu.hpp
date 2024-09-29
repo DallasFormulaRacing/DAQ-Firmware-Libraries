@@ -14,7 +14,6 @@ public:
     virtual ~LSM6DSOX_IMU() = default;
 
     void Initialize();
-    void GetIMUData(float (&acceleration)[3], float (&angular_velocity)[3]);
 
     void init() override;
     void calibrate() override;
@@ -24,11 +23,13 @@ public:
     short* DegreesPerSecond() override;
     float* RadiansPerSecond() override;
 
+    void updateSensorData(); //moved to public
+
+
 private:
     LSM6DSOX_Gyroscope gyroscope_;
     LSM6DSOX_Accelerometer accelerometer_;
 
-    void updateSensorData();
 
     float acceleration_[3] = {0};
     short angular_velocity_[3] = {0};
