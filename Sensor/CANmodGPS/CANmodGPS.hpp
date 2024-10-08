@@ -27,10 +27,12 @@ namespace Sensor
         void posConvert(const uint16_t frame);
         void imuConvert(const uint16_t frame);
         int pack();
+        void send(uint8_t array[]);
 
     private:
-        uint8_t posFrame[4];
-        uint8_t imuFrame[7];
+        uint8_t posArray[4];
+        uint8_t imuArray[7];
+
         platform::ICan &canInterface;
 
         // int c = 0b110101010101; # can denote binary numbers with prefix 0b
