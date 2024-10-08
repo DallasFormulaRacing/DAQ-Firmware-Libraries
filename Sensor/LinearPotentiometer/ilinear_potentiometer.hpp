@@ -16,7 +16,7 @@
 
 namespace sensor {
 
-class ILinearPotentiometer : public IADC{
+class ILinearPotentiometer{
     public:
 
     // rewrite using IADC abstract interface
