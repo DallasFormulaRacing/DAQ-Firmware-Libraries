@@ -26,7 +26,7 @@ namespace application{
 		uint8_t row;
 		uint8_t column;
 		data.RawRow(message_row);
-		for(int i = 0; i < messageSize; i++){
+		for(int i = 0; i < 5; i++){//partial send for autocross
 			row = i/2; //integer division by default floors
 			column = (i%2) * 4; //the column which the row goes into is essentially sinusoidal
 			bitSet(message_row[i], &message[row][column]);
@@ -37,10 +37,10 @@ namespace application{
 
 	void Can_Relay::Send_Messages(){
 		can_bus_->ChangeArbId(0x417);
-		for(int i = 0; i < kRows; i++){
+		for(int i = 0; i < 3; i++){
 			can_bus_->ChangeArbId(0x417 + i); //each message has a unique ID
 			can_bus_->Transmit(message[i]);
-			//printf("Sending Message! \n");
+			printf("Sending Message! \n");
 		}
 	}
 
