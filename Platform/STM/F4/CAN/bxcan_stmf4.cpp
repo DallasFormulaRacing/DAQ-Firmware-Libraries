@@ -10,7 +10,7 @@
 * Formula SAE International Collegiate Chapter
 * GPL-3.0 License
 */
-
+#include <cstdio>
 #include "bxcan_stmf4.hpp"
 
 namespace platform {
@@ -39,7 +39,16 @@ void BxCanStmF4::ConfigureFilter(uint32_t filder_id_high, uint32_t filter_id_low
 }
 
 void BxCanStmF4::Start() {
+	tx_message_header_.IDE = CAN_ID_STD; // setting ID to Standard ID
+	tx_message_header_.StdId = 0x417; // Identifier (D = 4/ A = 1/ Q = (1)7)
+	tx_message_header_.RTR = CAN_RTR_DATA;// Setting Remote Transmission Request
+	tx_message_header_.DLC = 8;//Data Length of Data bytes
+
 	HAL_CAN_Start(&bx_can_);
+}
+
+void BxCanStmF4::ChangeArbId(uint32_t newId){
+	tx_message_header_.StdId = newId;
 }
 
 void BxCanStmF4::EnableInterruptMode() {
@@ -57,8 +66,14 @@ void BxCanStmF4::Receive(uint8_t rx_buffer[kMaxBytes]) {
 }
 
 void BxCanStmF4::Transmit(uint8_t tx_buffer[kMaxBytes]) {
-	// TODO
+	if(HAL_CAN_AddTxMessage(&bx_can_, &tx_message_header_, tx_buffer,&tx_mailbox_) != HAL_OK){
+		printf("Error Transmit");
+		Error_Handler();
+	}
+
+	while(HAL_CAN_IsTxMessagePending(&bx_can_, tx_mailbox_)){}
 }
+
 
 void BxCanStmF4::ClearMessageArrivedFlag() { message_arrived_ = false; }
 

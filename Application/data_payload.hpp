@@ -62,6 +62,10 @@ struct DataPayload {
     	CsvString(buffer, length);
 	}
 
+    void RawRow(float* buffer){
+    	RawArray(buffer);
+    }
+
     void Lock() { mutex_->Lock(); }
 
     void Unlock() { mutex_->Unlock(); }
@@ -144,6 +148,51 @@ private:
 						air_temp_,
 						coolant_temp_);
     }
+    void RawArray(float* raw_buffer) {
+		float raw_array[] = {
+				timestamp_,
+
+				linpot_displacement_mm_[0],
+				linpot_displacement_mm_[1],
+				linpot_displacement_mm_[2],
+				linpot_displacement_mm_[3],
+
+				acceleration_[0],
+				acceleration_[1],
+				acceleration_[2],
+
+				angular_velocity_[0],
+				angular_velocity_[1],
+				angular_velocity_[2],
+
+				rpm_,
+				tps_,
+				fuel_open_time_,
+				ignition_angle_,
+
+				barometer_,
+				map_,
+				lambda_,
+
+				analog_inputs_[0],
+				analog_inputs_[1],
+				analog_inputs_[2],
+				analog_inputs_[3],
+				analog_inputs_[4],
+				analog_inputs_[5],
+				analog_inputs_[6],
+				analog_inputs_[7],
+
+				battery_voltage_,
+				air_temp_,
+				coolant_temp_
+		};
+
+		for (size_t i = 0; i < 29; ++i) {
+		        raw_buffer[i] = raw_array[i];
+		}
+	}
+
 
     std::shared_ptr<application::IMutex> mutex_;
     const char* kCsvFormatSpecifiers = "%f,"					// Timestamp

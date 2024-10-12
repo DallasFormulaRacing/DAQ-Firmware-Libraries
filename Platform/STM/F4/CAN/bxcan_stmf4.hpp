@@ -49,6 +49,7 @@ public:
 
 	/// Publishes data to the CAN bus.
 	/// @param tx_buffer The byte array whose data is to be sent.
+	/// This function will hang if the transmission never completes
 	virtual void Transmit(uint8_t tx_buffer[kMaxBytes]) override;
 
 	/// @return Indicates whether a new message has arrived.
@@ -57,8 +58,13 @@ public:
 	/// Clears the `MessageArrivedFlag()`.
 	virtual void ClearMessageArrivedFlag() override;
 
+	/// Changes the transmission IDs
+	virtual void ChangeArbId(uint32_t newId) override;
+
+
 	/// @return The CAN ID of the latest message received.
 	virtual uint32_t LatestCanId() override;
+
 
 	/// A user-configurable interrupt mode for generating notifications
 	/// when CAN messages are received. To be used with `ConfigureReceiveCallback()`.
@@ -102,8 +108,11 @@ private:
 	// ST's HAL library.
 	CAN_HandleTypeDef& bx_can_; 			// BxCAN (Basic Extended) peripheral
 	CAN_RxHeaderTypeDef rx_message_header_; // Receiving message info
+	CAN_TxHeaderTypeDef tx_message_header_; // Sending message info
 	CAN_FilterTypeDef filter_;				// Filter bank configuration
 	uint8_t filter_bank_num_;
+
+	uint32_t tx_mailbox_;
 
 	// Configurable options
 	uint32_t rx_interrupt_mode_ = 0;

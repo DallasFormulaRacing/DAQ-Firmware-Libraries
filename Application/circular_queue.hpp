@@ -66,6 +66,10 @@ public:
         return full_;
     }
 
+    uint8_t GetSize(){
+    	return kMaxSize;
+    }
+
     void Clear() {
     	while (!IsEmpty()) {
     		Dequeue();
@@ -75,7 +79,6 @@ public:
     void Lock() { mutex_->Lock(); }
 
     void Unlock() { mutex_->Unlock(); }
-
 
 private:
     void IncrementIndex(uint8_t &index) {
