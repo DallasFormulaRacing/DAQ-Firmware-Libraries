@@ -40,15 +40,17 @@ namespace application{
 
 		CircularQueue<DataPayload>& queue_;
 
-		uint8_t messageSize;
-
 		uint8_t kEnd_transmission_[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+
+		static constexpr uint8_t messageSize = 29;
 
 		static constexpr uint8_t kRows = 15;
 
 		bool transmission_ended_ = false;
 
 		uint8_t message[kRows][8] = {0};
+
+		float message_row[messageSize] = {0};
 	};
 }
 #endif /* DFR_LIBRARIES_APPLICATION_RELAY_CAN_RELAY_HPP_ */

@@ -10,9 +10,7 @@ namespace application{
 	Can_Relay::Can_Relay(std::shared_ptr<platform::ICan> can_bus,
 						 CircularQueue<DataPayload> queue):
 		can_bus_(can_bus),
-		queue_(queue){
-		messageSize = 29;
-	}
+		queue_(queue){}
 
 	void Can_Relay::bitSet(float value, uint8_t* byteArray) {
 	    std::memcpy(byteArray, &value, sizeof(float));
@@ -22,7 +20,6 @@ namespace application{
 	void Can_Relay::Generate_Messages(application::DataPayload data){
 
 		transmission_ended_ = false;
-		float message_row[messageSize] = {0};
 		uint8_t row;
 		uint8_t column;
 		data.RawRow(message_row);
