@@ -11,6 +11,8 @@
 * (c) 2022 Dallas Formula Racing - Embedded Firmware Team
 * Formula SAE International Collegiate Chapter
 * GPL-3.0 License
+*
+* rewrrite this file using iadc abstract interface and adc class
 */
 
 #include "sls1322.hpp"
