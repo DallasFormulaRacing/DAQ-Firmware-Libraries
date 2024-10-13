@@ -16,8 +16,12 @@
 
 namespace sensor {
 
-class ILinearPotentiometer {
+class ILinearPotentiometer{
     public:
+
+    // rewrite using IADC abstract interface
+
+
         virtual ~ILinearPotentiometer() = default;
 
         virtual void DisplacementInches(float quantized_counts[]) = 0;
