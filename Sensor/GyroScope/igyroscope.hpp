@@ -27,9 +27,8 @@ class IGyroscope{
         virtual short* DegreesPerSecond() = 0;
         virtual float* RadiansPerSecond() = 0;
 
+          virtual bool AngularVelocity() = 0; // moved to public
 
-    private:
-        virtual bool AngularVelocity() = 0;
 };
 
 }

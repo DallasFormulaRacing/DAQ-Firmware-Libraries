@@ -18,6 +18,13 @@ void LSM6DSOX_IMU::init() {
     accelerometer_.init();
 }
 
+bool LSM6DSOX_IMU::AngularVelocity() //added implementation to this virtual function
+{
+	 gyroscope_.GetAngularVelocity();
+
+	 return true;
+}
+
 void LSM6DSOX_IMU::calibrate() {
     accelerometer_.CalibrateSensor();  // Use the public wrapper method to access private method
 }

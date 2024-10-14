@@ -23,16 +23,20 @@ public:
     short* DegreesPerSecond() override;
     float* RadiansPerSecond() override;
 
+    bool AngularVelocity() override; //added override call to angular_velocity
+
     void updateSensorData(); //moved to public
 
+
+    float acceleration_[3] = {0}; // moved to public
+        short angular_velocity_[3] = {0}; //moved to public
 
 private:
     LSM6DSOX_Gyroscope gyroscope_;
     LSM6DSOX_Accelerometer accelerometer_;
 
 
-    float acceleration_[3] = {0};
-    short angular_velocity_[3] = {0};
+
 };
 
 }
