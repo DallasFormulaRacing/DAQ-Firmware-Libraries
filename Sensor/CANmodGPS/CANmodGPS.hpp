@@ -20,20 +20,31 @@ namespace Sensor
 {
     class CANmodGPS
     {
-        CANmodGPS(platform::ICan &canInterface);
+        CANmodGPS(CAN_HandleTypeDef* hcan);
         ~CANmodGPS();
 
-        int read();
-        void posConvert(const uint16_t frame);
-        void imuConvert(const uint16_t frame);
+        void receiveFrame();
+        void posConvert(const uint64_t frame);
+        void imuConvert(const uint64_t frame);
         int pack();
-        void send(uint8_t array[]);
+        void transmitData(uint8_t array[]);
+
+        typedef enum { //idk what im gonna use this for
+        	GPS_STATUS,
+			GPS_TIME,
+			GPS_POSITION,
+			GPS_ALTITUDE,
+			GPS_ATTITUDE,
+			GPS_ODOMETER,
+			GPS_SPEED,
+			GPS_GEOFENCE,
+			GPS_IMU
+        } GPSOutputSensor;
 
     private:
         uint8_t posArray[4];
         uint8_t imuArray[7];
-
-        platform::ICan &canInterface;
+        CAN_HandleTypeDef* hcan_;
 
         // int c = 0b110101010101; # can denote binary numbers with prefix 0b
     };
